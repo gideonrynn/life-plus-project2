@@ -4,13 +4,11 @@ $(function () {
 // console.log("#loveyoself")
 
 // *** moment.js todayDate to return to page *** //
-const date = moment().format("MMMM Do YYYY");
+const date = moment().format("MMMM Do, YYYY");
 $("#todayDate").text(date);
 
-// *** create apiPutObj to use later *** //
-const apiPutObj = {};
 // create waterAmountVal to store future water amount in array
-const waterAmountVal = "";
+let waterAmountVal = "";
 
 //set variable for total number of toggles
 const toggleVal = 6;
@@ -18,34 +16,33 @@ const toggleVal = 6;
 let toggleCountNow = 0;
 //run for each function to collect the true status of all toggles
 
-//when page loads and database returns values, check datastatuses and mark as active
+//when page loads and database returns values, check data statue values and apply checked or unchecked 
 function activeToggle() {
     $('label .userInput[data-status=true]').each(function(){
-        // $(this).parent('label').addClass("focus active")
         $(this).attr("checked");
-        console.log("done")
+    
      }) 
-
      $('label .userInput[data-status=false]').each(function(){
-        // $(this).parent('label').addClass("focus active")
         $(this).removeAttr("checked");
-        console.log("done removed")
      }) 
-
 
 }
 
-// *** click event function returning class .active to checked buttons" *** //
+//**Please note: the states for these buttons initially appeared to be flipped, possibly from external js - when the toggle button is clicked to the "on/yes" with toggle to left, "off/no" with toggle to right  */
+
 // when any of the buttons with class .btn-group-toggle are clicked
 $('.btn-group-toggle').on('click', function () {
 
+    //checking for active state may cause lag with button
     //and if the label of the particular toggle that was clicked is 'active'
     if ($(this).find('label').hasClass('active')) {
-        // set the activeBtnID to that input's ID
-        // const activeBtnID = $(this).find('input').attr("id");
-        // console.log(activeBtnID);
+      
+        //set data datastatus to false and remove checked
         $(this).find('input').attr("data-status", false).removeAttr("checked");
+
     } else {
+
+        //set data datastatus to true and add checked
         $(this).find('input').attr("data-status", true).attr("checked");
     }
 });
@@ -122,7 +119,7 @@ $.ajax({
 // changes from img to gif at todaysProgress = 100%
     const healthboiSuccessURL = "/assets/images/healthboi1gif.gif"
     if (todaysProgress === "100%" ) {
-        console.log("sparkleboi!")
+        // console.log("sparkleboi!")
         $("#sparkleboi").attr("src", healthboiSuccessURL)
     };
 
