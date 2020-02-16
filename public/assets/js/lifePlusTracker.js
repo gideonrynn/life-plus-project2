@@ -16,6 +16,7 @@ const toggleVal = 6;
 let toggleCountNow = 0;
 //run for each function to collect the true status of all toggles
 
+
 //when page loads and database returns values, check data statue values and apply checked or unchecked 
 function activeToggle() {
     $('label .userInput[data-status=true]').each(function(){
@@ -28,8 +29,7 @@ function activeToggle() {
 
 }
 
-//**Please note: flipped true false
-
+//**Note: flipped if else true false to match .active button behavior
 // when any of the buttons with class .btn-group-toggle are clicked
 $('.btn-group-toggle').on('click', function () {
 
@@ -60,10 +60,18 @@ $("#waterAmount").on("change", function() {
 $("#dailySubmitBtn").click(function() {
 // set var for today's date in SQL table format
     let todayDatePUTReq = moment().format('YYYY-MM-DD');
+
+    //**add user water oz input to current water intake total
+    //set variables for amount entered by user into "how many ounces" box and running total
+    let waterAmountInput = parseInt($("#waterAmount").attr("wateramount")) || 0;
+    let waterAmountTotal = parseInt($("#waterTrackerBar").text());
+
+    let newTotalAmount = waterAmountInput + waterAmountTotal;
+
     // create api PUT request array
     const apiPutObj = {
         water: $("#water").attr('data-status'),
-        waterAmount: $("#waterAmount").attr("wateramount"),
+        waterAmount: newTotalAmount,
         meditation: $("#meditation").attr('data-status'),
         pills: $("#pills").attr('data-status'),
         interaction: $("#interaction").attr('data-status'),
