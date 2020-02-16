@@ -18,35 +18,26 @@ const toggleVal = 6;
 let toggleCountNow = 0;
 //run for each function to collect the true status of all toggles
 
-//when page loads and database returns values, check data statue values and apply checked or unchecked 
+//when page loads and database returns values, check datastatuses and mark as active
 function activeToggle() {
     $('label .userInput[data-status=true]').each(function(){
-        $(this).attr("checked");
-        
-    
+        $(this).parent('label').addClass("focus active")
+        console.log("done")
      }) 
-     $('label .userInput[data-status=false]').each(function(){
-        $(this).removeAttr("checked");
-     }) 
-
 }
 
-//**Please note: the states for these buttons initially appeared to be flipped, possibly from external js - when the toggle button is clicked to the "on/yes" with toggle to left, "off/no" with toggle to right  */
-
+// *** click event function returning class .active to checked buttons" *** //
 // when any of the buttons with class .btn-group-toggle are clicked
 $('.btn-group-toggle').on('click', function () {
 
-    //checking for active state may cause lag with button
     //and if the label of the particular toggle that was clicked is 'active'
     if ($(this).find('label').hasClass('active')) {
-      
-        //set data datastatus to false and remove checked
-        $(this).find('input').attr("data-status", false).removeAttr("checked");
-
+        // set the activeBtnID to that input's ID
+        const activeBtnID = $(this).find('input').attr("id");
+        // console.log(activeBtnID);
+        $(this).find('input').attr("data-status", false);
     } else {
-
-        //set data datastatus to true and add checked
-        $(this).find('input').attr("data-status", true).attr("checked");
+        $(this).find('input').attr("data-status", true);
     }
 });
 
