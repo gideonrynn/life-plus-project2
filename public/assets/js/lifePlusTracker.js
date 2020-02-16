@@ -10,6 +10,8 @@ $("#todayDate").text(date);
 // create waterAmountVal to store future water amount in array
 let waterAmountVal = "";
 
+let apiPutObj = {};
+
 //set variable for total number of toggles
 const toggleVal = 6;
 //set variable for number of toggles that have been clicked (true)
@@ -39,12 +41,12 @@ $('.btn-group-toggle').on('click', function () {
     if ($(this).find('label').hasClass('active')) {
       
         //set data datastatus to false and remove checked
-        $(this).find('input').attr("data-status", false).attr("checked");
+        $(this).find('input').attr("data-status", false).removeAttr("checked");
 
     } else {
 
         //set data datastatus to true and add checked
-        $(this).find('input').attr("data-status", true).removeAttr("checked");
+        $(this).find('input').attr("data-status", true).attr("checked");
     }
 });
 
