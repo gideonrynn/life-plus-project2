@@ -18,14 +18,14 @@ let toggleCountNow = 0;
 
 //when page loads and database returns values, check data statue values and apply checked or unchecked 
 function activeToggle() {
-    $('label .userInput[data-status=true]').each(function(){
-        $(this).attr("checked");
-        console.log("this is true");
-    
-     }) 
-     $('label .userInput[data-status=false]').each(function(){
+    $('label .userInput[data-status=false]').each(function(){
         $(this).removeAttr("checked");
         console.log("this is false");
+    
+     }) 
+     $('label .userInput[data-status=true]').each(function(){
+        $(this).attr("checked");
+        console.log("this is true");
      }) 
 
 }
@@ -40,12 +40,12 @@ $('.btn-group-toggle').on('click', function () {
     if ($(this).find('label').hasClass('active')) {
       
         //set data datastatus to false and remove checked
-        $(this).find('input').attr("data-status", true).attr("checked");
+        $(this).find('input').attr("data-status", false).removeAttr("checked");
 
     } else {
 
         //set data datastatus to true and add checked
-        $(this).find('input').attr("data-status", false).removeAttr("checked");
+        $(this).find('input').attr("data-status", true).attr("checked");
     }
 });
 
