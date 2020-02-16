@@ -40,12 +40,12 @@ $('.btn-group-toggle').on('click', function () {
     if ($(this).find('label').hasClass('active')) {
       
         //set data datastatus to false and remove checked
-        $(this).find('input').attr("data-status", false).removeAttr("checked");
+        $(this).find('input').attr("data-status", true).attr("checked");
 
     } else {
 
         //set data datastatus to true and add checked
-        $(this).find('input').attr("data-status", true).attr("checked");
+        $(this).find('input').attr("data-status", false).removeAttr("checked");
     }
 });
 
