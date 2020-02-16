@@ -1,8 +1,5 @@
 $(function () {
 
-// *** js connection check *** //
-// console.log("#loveyoself")
-
 // *** moment.js todayDate to return to page *** //
 const date = moment().format("MMMM Do, YYYY");
 $("#todayDate").text(date);
@@ -29,11 +26,10 @@ function activeToggle() {
 
 }
 
-//**Note: flipped if else true false to match .active button behavior
+//**Note: flipped if else true false to match .active button behavior. active state check may cause lag with buttons
 // when any of the buttons with class .btn-group-toggle are clicked
 $('.btn-group-toggle').on('click', function () {
 
-    //checking for active state may cause lag with button
     //and if the label of the particular toggle that was clicked is 'active'
     if ($(this).find('label').hasClass('active')) {
       
@@ -45,6 +41,7 @@ $('.btn-group-toggle').on('click', function () {
         //set data datastatus to true and add checked
         $(this).find('input').attr("data-status", true).attr("checked");
     }
+
 });
 
 // *** return and store waterAmount:""; from html *** //
@@ -79,15 +76,12 @@ $("#dailySubmitBtn").click(function() {
         food: $("#food").attr('data-status')
     };
 
-    console.log(waterAmountVal);
-// check apiPutObj data
-    console.log(apiPutObj);
 // PUT api call returning userInput data to SQL table
     $.ajax("/api/progress/" + todayDatePUTReq, {
         type: "PUT",
         data: apiPutObj
     }).then(function() {
-        console.log("data PUT successful!");
+    
         location.reload();
     })
 });    
@@ -97,14 +91,13 @@ $.ajax({
     url: "https://type.fit/api/quotes",
     method: "GET"
 }).then(function(quotesDataRaw) {
-    // console.log(quotesDataRaw);
+    
     const quotesDataParsed = JSON.parse(quotesDataRaw);
-    // console.log(quotesDataParsed);
+ 
     const randomIndex = Math.floor(Math.random() * 1001)
-    // console.log(randomIndex);
-    // console.log(quotesDataParsed[randomIndex]);
+
     const quote = quotesDataParsed[randomIndex].text;
-    // console.log(quote);
+   
     const author = quotesDataParsed[randomIndex].author;
     $("#quotesApiQ").text(quote);
     $("#quotesApiA").text(author); 
