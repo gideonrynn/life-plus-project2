@@ -1,8 +1,5 @@
 $(function () {
 
-// *** js connection check *** //
-// console.log("#loveyoself")
-
 // *** moment.js todayDate to return to page *** //
 const date = moment().format("MMMM Do, YYYY");
 $("#todayDate").text(date);
@@ -16,6 +13,7 @@ const toggleVal = 6;
 let toggleCountNow = 0;
 //run for each function to collect the true status of all toggles
 
+
 //when page loads and database returns values, check data statue values and apply checked or unchecked 
 function activeToggle() {
     $('label .userInput[data-status=true]').each(function(){
@@ -28,12 +26,10 @@ function activeToggle() {
 
 }
 
-//**Please note: flipped true false
-
+//**Note: flipped if else true false to match .active button behavior. active state check may cause lag with buttons
 // when any of the buttons with class .btn-group-toggle are clicked
 $('.btn-group-toggle').on('click', function () {
 
-    //checking for active state may cause lag with button
     //and if the label of the particular toggle that was clicked is 'active'
     if ($(this).find('label').hasClass('active')) {
       
@@ -45,6 +41,7 @@ $('.btn-group-toggle').on('click', function () {
         //set data datastatus to true and add checked
         $(this).find('input').attr("data-status", true).attr("checked");
     }
+
 });
 
 // *** return and store waterAmount:""; from html *** //
@@ -60,10 +57,18 @@ $("#waterAmount").on("change", function() {
 $("#dailySubmitBtn").click(function() {
 // set var for today's date in SQL table format
     let todayDatePUTReq = moment().format('YYYY-MM-DD');
+
+    //**add user water oz input to current water intake total
+    //set variables for amount entered by user into "how many ounces" box and running total
+    let waterAmountInput = parseInt($("#waterAmount").attr("wateramount")) || 0;
+    let waterAmountTotal = parseInt($("#waterTrackerBar").text());
+
+    let newTotalAmount = waterAmountInput + waterAmountTotal;
+
     // create api PUT request array
     const apiPutObj = {
         water: $("#water").attr('data-status'),
-        waterAmount: $("#waterAmount").attr("wateramount"),
+        waterAmount: newTotalAmount,
         meditation: $("#meditation").attr('data-status'),
         pills: $("#pills").attr('data-status'),
         interaction: $("#interaction").attr('data-status'),
@@ -71,15 +76,12 @@ $("#dailySubmitBtn").click(function() {
         food: $("#food").attr('data-status')
     };
 
-    console.log(waterAmountVal);
-// check apiPutObj data
-    console.log(apiPutObj);
 // PUT api call returning userInput data to SQL table
     $.ajax("/api/progress/" + todayDatePUTReq, {
         type: "PUT",
         data: apiPutObj
     }).then(function() {
-        console.log("data PUT successful!");
+    
         location.reload();
     })
 });    
@@ -89,14 +91,13 @@ $.ajax({
     url: "https://type.fit/api/quotes",
     method: "GET"
 }).then(function(quotesDataRaw) {
-    // console.log(quotesDataRaw);
+    
     const quotesDataParsed = JSON.parse(quotesDataRaw);
-    // console.log(quotesDataParsed);
+ 
     const randomIndex = Math.floor(Math.random() * 1001)
-    // console.log(randomIndex);
-    // console.log(quotesDataParsed[randomIndex]);
+
     const quote = quotesDataParsed[randomIndex].text;
-    // console.log(quote);
+   
     const author = quotesDataParsed[randomIndex].author;
     $("#quotesApiQ").text(quote);
     $("#quotesApiA").text(author); 
