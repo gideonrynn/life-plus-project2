@@ -1,4 +1,4 @@
-<body>
+  <body>
     <div class="header">
         <h1>Life+</h1>
         <h6>A self-care tracker</h6>
@@ -9,7 +9,7 @@
             <div id="leftside" class="col">
                 <div id="leftheader" class="row">
                     <div id="plscenter">
-                        <h2 id="todayDate">TODAY'S DATE</h2>
+                        <h3 id="todayDate">TODAY'S DATE</h3>
                     </div>
                 </div>
                 <!-- user avatar -->
@@ -43,7 +43,7 @@
             <div id="rightside" class="col">
                 <div id="rightheader" class="row">
                     <div id="plscenter">
-                        <h2>Today, did you...</h2>
+                        <h3>Today, did you...</h3>
                     </div>
                 </div>
                 <div class="row" id="rightcontent">
@@ -52,7 +52,7 @@
                     <div class="col-4" style="margin-top: 20px;"> 
                         <div class="btn-group-toggle switch" data-toggle="buttons">
                             <label class="btn btn-secondary slider round">
-                                <input type="checkbox" class="userInput toggleStateBtn" id="water" data-status="{{dataObj.water}}" >
+                                <input type="checkbox" checked="" class="userInput toggleStateBtn" id="water" data-status="{{dataObj.water}}" ><span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="col-4" style="margin-top: 8px;">
                         <div class="btn-group-toggle switch" data-toggle="buttons">
                             <label class="btn btn-secondary slider round">
-                                <input type="checkbox" class="userInput toggleStateBtn" data-status="{{dataObj.food}}" id="food">
+                                <input type="checkbox" checked="" class="userInput toggleStateBtn" data-status="{{dataObj.food}}" id="food"><span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     <div class="col-4">
                         <div class="btn-group-toggle switch" data-toggle="buttons">
                             <label class="btn btn-secondary slider round">
-                                <input type="checkbox" class="userInput toggleStateBtn" data-status="{{dataObj.goal}}" id="goal">
+                                <input type="checkbox" checked="" class="userInput toggleStateBtn" data-status="{{dataObj.goal}}" id="goal"><span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <div class="col-4">
                         <div class="btn-group-toggle switch" data-toggle="buttons">
                             <label class="btn btn-secondary slider round">
-                                <input type="checkbox" class="userInput toggleStateBtn" data-status="{{dataObj.meditation}}" id="meditation">
+                                <input type="checkbox" checked="" class="userInput toggleStateBtn" data-status="{{dataObj.meditation}}" id="meditation"><span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                     <div class="col-4">
                         <div class="btn-group-toggle switch" data-toggle="buttons">
                             <label class="btn btn-secondary slider round" >
-                                <input type="checkbox" class="userInput toggleStateBtn" data-status="{{dataObj.pills}}" id="pills">
+                                <input type="checkbox" checked="" class="userInput toggleStateBtn" data-status="{{dataObj.pills}}" id="pills"><span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                     <div class="col-4">
                         <div class="btn-group-toggle switch" data-toggle="buttons">
                             <label class="btn btn-secondary slider round">
-                                <input type="checkbox" class="userInput toggleStateBtn" data-status="{{dataObj.interaction}}" id="interaction">
+                                <input type="checkbox" checked="" class="userInput toggleStateBtn" data-status="{{dataObj.interaction}}" id="interaction"><span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -112,11 +112,13 @@
                     <input class="btn btn-success" id="dailySubmitBtn" type="submit" value="Submit">
                 </div>
                 <!-- inspirational quotes API call -->
-                <div class="col-12"> 
+                <div class="col-12" id="inspiration"> 
+                    
                         <h5>Today's Inspiration:</h5>
-                        <br>
                         <h5 id="quotesApiQ"></h5>
                         <h6 id="quotesApiA"></h6>
+
+                        
                     </div>
             </div> <!-- end rightside -->
         </div> <!-- <div class="row"> -->

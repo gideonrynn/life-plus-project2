@@ -10,34 +10,40 @@ $("#todayDate").text(date);
 // create waterAmountVal to store future water amount in array
 let waterAmountVal = "";
 
-let apiPutObj = {};
-
 //set variable for total number of toggles
 const toggleVal = 6;
 //set variable for number of toggles that have been clicked (true)
 let toggleCountNow = 0;
 //run for each function to collect the true status of all toggles
 
-//when page loads and database returns values, check datastatuses and mark as active
+//when page loads and database returns values, check data statue values and apply checked or unchecked 
 function activeToggle() {
     $('label .userInput[data-status=true]').each(function(){
-        $(this).parent('label').addClass("focus active")
-        console.log("done")
+        $(this).attr("checked");
+    
      }) 
+     $('label .userInput[data-status=false]').each(function(){
+        $(this).removeAttr("checked");
+     }) 
+
 }
 
-// *** click event function returning class .active to checked buttons" *** //
+//**Please note: flipped true false
+
 // when any of the buttons with class .btn-group-toggle are clicked
 $('.btn-group-toggle').on('click', function () {
 
+    //checking for active state may cause lag with button
     //and if the label of the particular toggle that was clicked is 'active'
     if ($(this).find('label').hasClass('active')) {
-        // set the activeBtnID to that input's ID
-        const activeBtnID = $(this).find('input').attr("id");
-        // console.log(activeBtnID);
-        $(this).find('input').attr("data-status", false);
+      
+        //set data datastatus to false and remove checked
+        $(this).find('input').attr("data-status", false).removeAttr("checked");
+
     } else {
-        $(this).find('input').attr("data-status", true);
+
+        //set data datastatus to true and add checked
+        $(this).find('input').attr("data-status", true).attr("checked");
     }
 });
 
