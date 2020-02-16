@@ -20,10 +20,12 @@ let toggleCountNow = 0;
 function activeToggle() {
     $('label .userInput[data-status=true]').each(function(){
         $(this).attr("checked");
+        console.log("this is true");
     
      }) 
      $('label .userInput[data-status=false]').each(function(){
         $(this).removeAttr("checked");
+        console.log("this is false");
      }) 
 
 }
