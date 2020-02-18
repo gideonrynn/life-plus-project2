@@ -36,12 +36,15 @@ module.exports = function(app) {
 
 
     //execute put to update existing record with new data in db based on today's date
-    app.put("/api/progress/:todaysDate", function(req, res) {
+    app.put("/api/progress/", function(req, res) {
 
+        //*note - originally, the todaysDate was passed into the put request as a parameter. Moment was moved to apiroute, as there was a discrepancy between the date being sent by the browser, and the date saved on the server side for updating an existing record
         //set var for today's date returned from the put request
-        let todaysDate = req.params.todaysDate;
-        
+        // let todaysDate = req.params.todaysDate;
 
+        //set var for today's date
+        let todaysDate = moment().format('YYYY-MM-DD');
+        
         //use the data sent from the browser (req.body) to update the specific row...
         db.Intake.update(req.body,
             

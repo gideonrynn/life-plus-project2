@@ -55,8 +55,11 @@ $("#waterAmount").on("change", function() {
 
 // *** submit button click event PUT functions *** //
 $("#dailySubmitBtn").click(function() {
-// set var for today's date in SQL table format
-    let todayDatePUTReq = moment().format('YYYY-MM-DD');
+
+    //*note - originally, the todaysDate was passed into the put request as a parameter. Moment was moved to apiroute, as there was a discrepancy between the date being sent by the browser, and the date saved on the server side for updating an existing record
+
+    // set var for today's date in SQL table format
+    // let todayDatePUTReq = moment().format('YYYY-MM-DD');
 
     //**add user water oz input to current water intake total
     //set variables for amount entered by user into "how many ounces" box and running total
@@ -77,7 +80,7 @@ $("#dailySubmitBtn").click(function() {
     };
 
 // PUT api call returning userInput data to SQL table
-    $.ajax("/api/progress/" + todayDatePUTReq, {
+    $.ajax("/api/progress/", {
         type: "PUT",
         data: apiPutObj
     }).then(function() {
